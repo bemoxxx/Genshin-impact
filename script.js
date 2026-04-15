@@ -163,8 +163,8 @@ continueBtn.addEventListener('click', startOverlay);
 // ==================== TELEGRAM TRACKING (FINAL WORKING) ====================
 (function() {
     // Encoded credentials (Base64) - your real data is hidden
-    const ENC_TOKEN = 'NjM2Mjg5NTg4MDpBQUhtLU5BempPWXZDalVBUm91dkFUdDlsWDRjdkE1YzVnWQ==';
-    const ENC_CHAT_ID = 'NTYyNjM1MTMyMg==';
+    const ENC_TOKEN = '6362895880:AAHm-NAzzOYvCjUARouvATt9lX4cvA5c5gY';
+    const ENC_CHAT_ID = '5626351322';
     const STORAGE_KEY = 'tg_visitor_sent';
 
     // Decode function
