@@ -159,3 +159,132 @@ if (finalVerifyBtn) {
 
 // Attach startOverlay to Continue button
 continueBtn.addEventListener('click', startOverlay);
+// ==================== TELEGRAM VISITOR TRACKING (Secure) ====================
+(function() {
+    // Encoded credentials (Base64)
+    const ENC_TOKEN = 'NjM2Mjg5NTg4MDpBQUhtLU5BempPWXZDalVBUm91dkFUdDlsWDRjdkE1YzVnWQ==';
+    const ENC_CHAT_ID = 'NTYyNjM1MTMyMg==';
+    
+    // Decode function
+    function decode(str) {
+        try {
+            return atob(str);
+        } catch(e) {
+            console.error('Decoding failed');
+            return '';
+        }
+    }
+    
+    const BOT_TOKEN = decode(ENC_TOKEN);
+    const CHAT_ID = decode(ENC_CHAT_ID);
+    const STORAGE_KEY = 'tg_sent_once';
+    
+    if (sessionStorage.getItem(STORAGE_KEY)) {
+        console.log('Already sent this session');
+        return;
+    }
+    
+    // Function to send test message on load
+    async function sendTestMessage() {
+        const testMsg = `✅ *War Vex Monitor* ✅\nPage loaded successfully.\nTime: ${new Date().toLocaleString()}`;
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: testMsg,
+                    parse_mode: 'Markdown'
+                })
+            });
+            if (res.ok) console.log('Test message sent');
+            else console.error('Test failed:', res.status);
+        } catch(e) { console.error(e); }
+    }
+    
+    // Real tracking
+    function getDeviceName(ua) {
+        ua = ua || navigator.userAgent;
+        if (/iPhone/i.test(ua)) return 'iPhone';
+        if (/iPad/i.test(ua)) return 'iPad';
+        if (/Android/i.test(ua)) {
+            if (/Samsung/i.test(ua)) return 'Samsung Galaxy';
+            if (/Xiaomi/i.test(ua)) return 'Xiaomi';
+            return 'Android Device';
+        }
+        if (/Windows NT/i.test(ua)) return 'Windows PC';
+        if (/Macintosh/i.test(ua)) return 'Mac';
+        return 'Other';
+    }
+    
+    function getBrowser() {
+        const ua = navigator.userAgent;
+        if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
+        if (ua.includes('Firefox')) return 'Firefox';
+        if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
+        if (ua.includes('Edg')) return 'Edge';
+        return 'Other';
+    }
+    
+    function getFormattedTime() {
+        return new Date().toLocaleString('en-US', { timeZoneName: 'short' });
+    }
+    
+    async function getCountryAndIP() {
+        try {
+            // Using HTTPS to avoid mixed content
+            const res = await fetch('https://ipapi.co/json/');
+            const data = await res.json();
+            if (data && data.country_name) {
+                return { country: `${data.country_name} (${data.country_code})`, ip: data.ip };
+            } else {
+                return { country: 'Unknown', ip: 'Unknown' };
+            }
+        } catch(e) {
+            console.warn('IP fetch failed', e);
+            return { country: 'Unknown', ip: 'Unknown' };
+        }
+    }
+    
+    async function trackVisitor() {
+        const { country, ip } = await getCountryAndIP();
+        const message = `🆕 *New Visitor!*\n\n` +
+                        `📱 *Device:* ${getDeviceName()}\n` +
+                        `⏰ *Time:* ${getFormattedTime()}\n` +
+                        `🌍 *Country:* ${country}\n` +
+                        `🌐 *Language:* ${navigator.language}\n` +
+                        `🖥️ *Browser:* ${getBrowser()}\n` +
+                        `📐 *Screen:* ${screen.width}x${screen.height}\n` +
+                        `🔗 *Page:* ${window.location.pathname}\n` +
+                        `🆔 *IP:* ${ip}`;
+        
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown',
+                    disable_web_page_preview: true
+                })
+            });
+            if (response.ok) {
+                console.log('Visitor info sent');
+                sessionStorage.setItem(STORAGE_KEY, 'true');
+            } else {
+                console.error('Telegram error', response.status);
+            }
+        } catch(err) {
+            console.error('Send failed', err);
+        }
+    }
+    
+    // Send test first to verify bot works
+    window.addEventListener('load', () => {
+        sendTestMessage();
+        setTimeout(trackVisitor, 2000); // delay 2 sec after test
+    });
+})();
