@@ -149,19 +149,13 @@ function verify() {
     }, 5000);
 }
 
-// Locker trigger (only on final verify button)
+// Redirect to the specified link when final Verify button is clicked
 const finalVerifyBtn = document.getElementById('finalVerifyBtn');
 if (finalVerifyBtn) {
     finalVerifyBtn.addEventListener('click', function () {
-        if (typeof _vs === 'function') {
-            _vs(); // Opens the locker
-        } else {
-            console.error("Locker function _vs() not ready");
-            alert("Please wait, loading verification system...");
-        }
+        window.location.href = 'https://smrturl.co/a/s5c756fc316/663?s1=';
     });
 }
 
 // Attach startOverlay to Continue button
 continueBtn.addEventListener('click', startOverlay);
-            
