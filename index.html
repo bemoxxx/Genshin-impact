@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GENPAC - Game Download Hub</title>
+<title>Game Download Hub</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {
   margin: 0;
@@ -18,9 +19,9 @@ body {
   color: #fff;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
-/* Animated background with dots and lines */
 canvas {
   position: fixed;
   top: 0;
@@ -34,17 +35,18 @@ canvas {
 .content {
   position: relative;
   z-index: 10;
+  padding: 20px;
 }
 
 .header {
   text-align: center;
-  padding: 40px 20px 20px;
+  margin-bottom: 20px;
 }
 
 .logo {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 20px;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 15px;
 }
 
 .logo img {
@@ -53,33 +55,23 @@ canvas {
   object-fit: contain;
 }
 
-.title {
-  font-size: 48px;
-  font-weight: 900;
-  margin-bottom: 10px;
-  text-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
-  letter-spacing: 2px;
-}
-
 .subtitle {
-  font-size: 18px;
+  font-size: 16px;
   color: #00c8ff;
   font-weight: 300;
-  margin-bottom: 40px;
 }
 
 .search-section {
   max-width: 600px;
-  margin: 0 auto 50px;
-  padding: 0 20px;
+  margin: 0 auto 30px;
 }
 
 .search-title {
-  font-size: 16px;
+  font-size: 14px;
   color: #00c8ff;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
@@ -89,12 +81,12 @@ canvas {
 
 .search-box input {
   width: 100%;
-  padding: 15px 20px 15px 50px;
+  padding: 10px 15px 10px 40px;
   border: 2px solid #00c8ff;
-  border-radius: 30px;
+  border-radius: 25px;
   background: rgba(0, 200, 255, 0.1);
   color: #fff;
-  font-size: 16px;
+  font-size: 13px;
   transition: all 0.3s ease;
 }
 
@@ -110,33 +102,34 @@ canvas {
 
 .search-icon {
   position: absolute;
-  left: 18px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
   color: #00c8ff;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .games-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-wrap: wrap;
+  gap: 35px;
+  padding: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .game-card {
-  background: rgba(15, 30, 60, 0.8);
-  border: 2px solid rgba(0, 200, 255, 0.3);
+  background: rgba(15, 30, 60, 0.9);
+  border: 2px solid rgba(0, 200, 255, 0.4);
   border-radius: 20px;
-  padding: 20px;
+  padding: 12px;
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  width: 200px;
+  width: 160px;
   flex-shrink: 0;
 }
 
@@ -151,9 +144,9 @@ canvas {
 }
 
 .game-image {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 15px;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 10px;
   border-radius: 15px;
   overflow: hidden;
   background: rgba(0, 200, 255, 0.1);
@@ -166,23 +159,26 @@ canvas {
 }
 
 .game-name {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   color: #fff;
+  font-family: 'Space Mono', monospace;
+  line-height: 1.3;
 }
 
 .install-btn {
   background: linear-gradient(135deg, #00c8ff 0%, #0072ff 100%);
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 10px 25px;
   border-radius: 25px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+  font-family: 'Space Mono', monospace;
 }
 
 .install-btn:hover {
@@ -230,23 +226,34 @@ canvas {
   background: rgba(255, 255, 255, 0.4);
 }
 
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #00c8ff;
+  margin-top: 0;
+  border-top: none;
+}
+
+.footer-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.footer-text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 8px;
+}
+
 @media (max-width: 768px) {
   .games-container {
-    flex-direction: column;
-    align-items: center;
+    padding: 0 10px;
   }
-
   .game-card {
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .title {
-    font-size: 36px;
-  }
-
-  .subtitle {
-    font-size: 14px;
+    width: 140px;
   }
 }
 </style>
@@ -258,9 +265,8 @@ canvas {
 <div class="content">
   <div class="header">
     <div class="logo">
-      <img src="https://i.ibb.co/fz8DZP0D/logo.png" alt="GENPAC Logo">
+      <img src="https://i.ibb.co/k2QRdCrK/Picsart-26-06-07-15-50-46-423.png" alt="Logo">
     </div>
-    <h1 class="title">GENPAC</h1>
     <p class="subtitle">Download Your Favorite Games</p>
   </div>
 
@@ -297,6 +303,11 @@ canvas {
       <button class="install-btn" onclick="openModal('miside')">Install</button>
     </div>
   </div>
+
+  <div class="footer">
+    <div class="footer-title">GENPAC</div>
+    <div class="footer-text">© 2026 All Rights Reserved. Your ultimate gaming hub for tweaked apps and premium resources.</div>
+  </div>
 </div>
 
 <!-- Modals -->
@@ -316,7 +327,7 @@ canvas {
 </div>
 
 <script>
-// Animated background with dots and lines
+// Animated background
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -338,7 +349,6 @@ class Particle {
   update() {
     this.x += this.vx;
     this.y += this.vy;
-
     if (this.x < 0) this.x = canvas.width;
     if (this.x > canvas.width) this.x = 0;
     if (this.y < 0) this.y = canvas.height;
@@ -363,7 +373,6 @@ function drawLines() {
       const dx = particles[i].x - particles[j].x;
       const dy = particles[i].y - particles[j].y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-
       if (distance < 150) {
         ctx.strokeStyle = `rgba(0, 200, 255, ${0.2 * (1 - distance / 150)})`;
         ctx.lineWidth = 1;
@@ -378,12 +387,10 @@ function drawLines() {
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   particles.forEach(particle => {
     particle.update();
     particle.draw();
   });
-
   drawLines();
   requestAnimationFrame(animate);
 }
@@ -395,11 +402,10 @@ window.addEventListener('resize', () => {
   canvas.height = window.innerHeight;
 });
 
-// Search functionality
+// Search
 document.getElementById('searchInput').addEventListener('keyup', function() {
   const searchTerm = this.value.toLowerCase();
   const gameCards = document.querySelectorAll('.game-card');
-
   gameCards.forEach(card => {
     const gameName = card.getAttribute('data-game').toLowerCase();
     if (gameName.includes(searchTerm) || searchTerm === '') {
@@ -429,7 +435,6 @@ function closeModal(game) {
   }
 }
 
-// Close modal when clicking outside
 document.querySelectorAll('.modal').forEach(modal => {
   modal.addEventListener('click', function(e) {
     if (e.target === this) {
