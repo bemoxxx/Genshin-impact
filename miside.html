@@ -346,9 +346,9 @@ function startDownload() {
   downloadInterval = setInterval(() => {
     let step = 0;
     const rand = Math.random();
-    if (rand < 0.5) step = 6 + (Math.random() * 8);
-    else if (rand < 0.85) step = 10 + (Math.random() * 12);
-    else step = 4 + (Math.random() * 7);
+    if (rand < 0.5) step = 4 + (Math.random() * 5);
+    else if (rand < 0.85) step = 3.2 + (Math.random() * 4);
+    else step = 4 + (Math.random() * 4);
     downloaded += step;
     if (downloaded > totalSize) downloaded = totalSize;
     let percent = (downloaded / totalSize) * 100;
